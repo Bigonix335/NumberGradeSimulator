@@ -1,0 +1,581 @@
+```html id="f3k9vs"
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XP Clicker</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(to bottom,#151515,#0d0d0d);
+    font-family:'Luckiest Guy', cursive;
+    overflow:hidden;
+}
+
+/* COINS */
+
+#coins{
+    position:absolute;
+    top:20px;
+    right:20px;
+    color:white;
+    font-size:24px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#1e1e1e;
+    padding:10px 18px;
+    border-radius:15px;
+    border:2px solid #333;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+.coinIcon{
+    color:gold;
+}
+
+/* SHOP BUTTON */
+
+#shop{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    width:95px;
+    height:95px;
+    background:#1b1b1b;
+    border-radius:20px;
+    border:3px solid #00aaff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(0,170,255,0.4);
+    transition:0.2s;
+}
+
+#shop:hover{
+    transform:translateY(-50%) scale(1.08);
+}
+
+#shopIcon{
+    font-size:42px;
+}
+
+#shopText{
+    color:#00aaff;
+    margin-top:5px;
+    font-size:14px;
+}
+
+/* SHOP MENU */
+
+#shopMenu{
+    position:absolute;
+    width:550px;
+    height:420px;
+    background:#1a1a1a;
+    border:3px solid #00aaff;
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(0,170,255,0.4);
+    display:none;
+    flex-direction:column;
+    padding:20px;
+}
+
+#shopHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+#shopTitle{
+    color:#00aaff;
+    font-size:35px;
+    text-shadow:0 0 10px rgba(0,170,255,0.5);
+}
+
+/* XP POINTS */
+
+#shopXP{
+    position:relative;
+    color:white;
+    font-size:24px;
+}
+
+#xpInfo{
+    position:relative;
+    cursor:pointer;
+}
+
+#xpInfoIcon{
+    position:absolute;
+    left:-8px;
+    bottom:-5px;
+    width:16px;
+    height:16px;
+    background:white;
+    color:black;
+    border-radius:50%;
+    font-size:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    font-weight:bold;
+}
+
+/* INFO MENU */
+
+#infoMenu{
+    position:absolute;
+    width:600px;
+    height:320px;
+    background:#1a1a1a;
+    border:3px solid #00aaff;
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(0,170,255,0.4);
+    display:none;
+    align-items:center;
+    padding:20px;
+    gap:20px;
+    z-index:999;
+}
+
+#tutorialCharacter{
+    width:180px;
+}
+
+#infoText{
+    color:white;
+    font-size:26px;
+    line-height:1.5;
+    max-width:350px;
+    font-family:'Lora', serif;
+}
+
+/* CLOSE BUTTON */
+
+#closeInfo{
+    position:absolute;
+    top:15px;
+    right:18px;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#closeInfo:hover{
+    color:#00aaff;
+    transform:scale(1.1);
+}
+
+/* UPGRADE */
+
+.upgradeBox{
+    margin-top:30px;
+    background:linear-gradient(135deg,#232323,#161616);
+    border:3px solid #00aaff;
+    border-radius:20px;
+    padding:20px;
+    color:white;
+    box-shadow:0 0 20px rgba(0,170,255,0.3);
+    transition:0.2s;
+    cursor:pointer;
+}
+
+.upgradeBox:hover{
+    transform:scale(1.03);
+}
+
+.upgradeTitle{
+    font-size:28px;
+    color:#00c3ff;
+}
+
+.upgradeDesc{
+    margin-top:10px;
+    font-size:18px;
+    color:#cfcfcf;
+    font-family:Arial;
+}
+
+.upgradeBottom{
+    margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.upgradeCost{
+    color:#00aaff;
+    font-size:20px;
+}
+
+.upgradeLevel{
+    background:#00aaff;
+    color:white;
+    padding:5px 12px;
+    border-radius:10px;
+    font-size:18px;
+}
+
+/* LEVEL */
+
+#level{
+    color:white;
+    font-size:38px;
+    margin-bottom:20px;
+    text-shadow:0 0 10px rgba(0,170,255,0.5);
+}
+
+.star{
+    color:#00aaff;
+}
+
+/* COUNTER */
+
+#counter{
+    font-size:120px;
+    color:white;
+    cursor:pointer;
+    user-select:none;
+    text-shadow:0 0 20px rgba(255,255,255,0.2);
+    transition:0.1s;
+}
+
+#counter:active{
+    transform:scale(1.05);
+}
+
+/* XP BAR */
+
+#xpWrapper{
+    position:absolute;
+    bottom:20px;
+    width:80%;
+}
+
+#levels{
+    display:flex;
+    justify-content:space-between;
+    color:white;
+    margin-bottom:5px;
+    font-size:20px;
+}
+
+#xpContainer{
+    position:relative;
+    width:100%;
+    height:38px;
+    background:#2b2b2b;
+    border-radius:20px;
+    overflow:hidden;
+    border:2px solid #3b3b3b;
+}
+
+#xpBar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(to right,#008cff,#00c3ff);
+    box-shadow:0 0 15px rgba(0,170,255,0.7);
+}
+
+#xpText{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    color:white;
+    line-height:38px;
+    font-size:18px;
+    text-shadow:0 0 5px black;
+    font-family:Arial;
+}
+
+</style>
+</head>
+<body>
+
+<!-- COINS -->
+
+<div id="coins">
+    <span class="coinIcon">🪙</span>
+    <span id="coinCount">0</span>
+</div>
+
+<!-- SHOP BUTTON -->
+
+<div id="shop">
+    <div id="shopIcon">🏪</div>
+    <div id="shopText">XP SHOP</div>
+</div>
+
+<!-- SHOP MENU -->
+
+<div id="shopMenu">
+
+    <div id="shopHeader">
+
+        <div id="shopTitle">
+            UPGRADES
+        </div>
+
+        <div id="shopXP">
+
+            <div id="xpInfo">
+                💎 <span id="shopXPPoints">0</span>
+                <div id="xpInfoIcon">!</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- UPGRADE -->
+
+    <div class="upgradeBox" id="moreNumbersUpgrade">
+
+        <div class="upgradeTitle">
+            More Numbers!
+        </div>
+
+        <div class="upgradeDesc">
+            +1 number per click
+        </div>
+
+        <div class="upgradeBottom">
+
+            <div class="upgradeCost">
+                💎 3 XP Points
+            </div>
+
+            <div class="upgradeLevel" id="upgradeLevel">
+                Lv. 0
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- INFO MENU -->
+
+<div id="infoMenu">
+
+    <div id="closeInfo">
+        ✕
+    </div>
+
+    <img
+    id="tutorialCharacter"
+    src="https://th.bing.com/th/id/OIP.IPGSa31FwTPdnIg5-sAeYAHaHa?w=169&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+    >
+
+    <div id="infoText">
+        XP points are gained for new XP levels.<br><br>
+
+        For each new XP level you get
+        1 XP point.
+    </div>
+
+</div>
+
+<!-- LEVEL -->
+
+<div id="level"></div>
+
+<!-- COUNTER -->
+
+<div id="counter">0</div>
+
+<!-- XP BAR -->
+
+<div id="xpWrapper">
+
+    <div id="levels">
+        <span id="currentLevel"></span>
+        <span id="nextLevel"></span>
+    </div>
+
+    <div id="xpContainer">
+        <div id="xpBar"></div>
+        <div id="xpText"></div>
+    </div>
+
+</div>
+
+<script>
+
+let count = parseInt(localStorage.getItem("count")) || 0;
+let xp = parseInt(localStorage.getItem("xp")) || 0;
+let level = parseInt(localStorage.getItem("level")) || 1;
+let neededXP = parseInt(localStorage.getItem("neededXP")) || 100;
+
+let coins = parseInt(localStorage.getItem("coins")) || 0;
+let xpPoints = parseInt(localStorage.getItem("xpPoints")) || 0;
+
+let clickPower = parseInt(localStorage.getItem("clickPower")) || 1;
+let moreNumbersLevel = parseInt(localStorage.getItem("moreNumbersLevel")) || 0;
+
+const counter = document.getElementById("counter");
+const xpBar = document.getElementById("xpBar");
+const xpText = document.getElementById("xpText");
+const levelText = document.getElementById("level");
+
+const currentLevel = document.getElementById("currentLevel");
+const nextLevel = document.getElementById("nextLevel");
+
+const coinCount = document.getElementById("coinCount");
+
+const shopXPPoints = document.getElementById("shopXPPoints");
+
+const shop = document.getElementById("shop");
+const shopMenu = document.getElementById("shopMenu");
+
+const moreNumbersUpgrade = document.getElementById("moreNumbersUpgrade");
+const upgradeLevel = document.getElementById("upgradeLevel");
+
+const xpInfo = document.getElementById("xpInfo");
+const infoMenu = document.getElementById("infoMenu");
+
+const closeInfo =
+document.getElementById("closeInfo");
+
+function updateUI(){
+
+    counter.innerText = count;
+
+    coinCount.innerText = coins;
+
+    shopXPPoints.innerText = xpPoints;
+
+    upgradeLevel.innerText =
+        "Lv. " + moreNumbersLevel;
+
+    levelText.innerHTML = `
+        <span class="star">★</span>
+        Level ${level}
+        <span class="star">★</span>
+    `;
+
+    currentLevel.innerText = "Lv. " + level;
+    nextLevel.innerText = "Lv. " + (level + 1);
+
+    let missingXP = neededXP - xp;
+
+    xpText.innerText =
+        xp + " / " + neededXP +
+        " XP • Chýba " + missingXP + " XP";
+
+    xpBar.style.width =
+        (xp / neededXP * 100) + "%";
+}
+
+function save(){
+
+    localStorage.setItem("count", count);
+    localStorage.setItem("xp", xp);
+    localStorage.setItem("level", level);
+    localStorage.setItem("neededXP", neededXP);
+
+    localStorage.setItem("coins", coins);
+    localStorage.setItem("xpPoints", xpPoints);
+
+    localStorage.setItem("clickPower", clickPower);
+    localStorage.setItem("moreNumbersLevel", moreNumbersLevel);
+}
+
+/* SHOP OPEN */
+
+shop.onclick = () => {
+
+    if(shopMenu.style.display == "flex"){
+        shopMenu.style.display = "none";
+    }else{
+        shopMenu.style.display = "flex";
+    }
+};
+
+/* INFO MENU */
+
+xpInfo.onclick = () => {
+
+    if(infoMenu.style.display == "flex"){
+        infoMenu.style.display = "none";
+    }else{
+        infoMenu.style.display = "flex";
+    }
+};
+
+/* CLOSE INFO */
+
+closeInfo.onclick = () => {
+
+    infoMenu.style.display = "none";
+};
+
+/* BUY UPGRADE */
+
+moreNumbersUpgrade.onclick = () => {
+
+    if(xpPoints >= 3){
+
+        xpPoints -= 3;
+
+        clickPower += 1;
+
+        moreNumbersLevel += 1;
+
+        updateUI();
+        save();
+    }
+};
+
+/* CLICK */
+
+counter.onclick = () => {
+
+    count += clickPower;
+
+    xp += 1;
+
+    while(xp >= neededXP){
+
+        xp -= neededXP;
+
+        level++;
+
+        xpPoints += 1;
+
+        if(level >= 10){
+            neededXP += 100;
+        }else{
+            neededXP += 10;
+        }
+    }
+
+    updateUI();
+    save();
+};
+
+updateUI();
+
+</script>
+
+</body>
+</html>
+```
