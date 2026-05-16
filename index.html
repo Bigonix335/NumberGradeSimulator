@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="sk">
 <head>
-  <title>NumberFarmingSimulator</title>
+  <meta charset="UTF-8">
+  <title>Moja hra</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      background-image: url("https://cdn.vectorstock.com/i/preview-1x/15/77/seamless-background-pattern-with-numbers-vector-3841577.jpg");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .btn {
+      width: 220px;
+      padding: 15px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: white;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .play {
+      background-color: #28a745;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .soon {
+      background-color: #555;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .credit {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 12px;
+      color: white;
+      opacity: 0.8;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>working 🎮</h1>
-  <p>Game loaded succesfully</p>
+
+  <div class="menu">
+
+    <a href="klikanie.html">
+      <button class="btn play">▶ PLAY</button>
+    </a>
+
+    <button class="btn soon">Coming soon</button>
+    <button class="btn soon">Coming soon</button>
+
+  </div>
+
+  <div class="credit">
+    by: Bigonix335
+  </div>
+
 </body>
 </html>
